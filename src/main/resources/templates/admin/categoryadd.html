@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category Form</title>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h1 th:text="${category.isEdit} ? 'Update Category' : 'Add New Category'"></h1>
+
+<form th:action="@{/admin/categories/save}" method="post">
+    <!-- Hidden fields to handle editing -->
+    <input type="hidden" th:value="${category.isEdit}" name="isEdit">
+    <input type="hidden" th:value="${category.id}" name="id">
+
+    <label>Category Name</label><br>
+    <input type="text" name="name" th:value="${category.name}"><br><br>
+
+    <label>Images</label><br>
+    <input type="text" name="images" th:value="${category.images}"><br><br>
+
+    <label>Status</label><br>
+    <input type="text" name="status" th:value="${category.status}"><br><br>
+
+    <button type="submit" th:text="${category.isEdit} ? 'Update' : 'Insert'"></button>
+</form>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
